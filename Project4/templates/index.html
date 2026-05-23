@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Chatbot</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: #f4f4f4;
+        }
+        #chatbox {
+            width: 400px;
+            margin: 20px auto;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .user { color: blue; }
+        .bot { color: green; }
+    </style>
+</head>
+<body>
+
+<h2>AI Chatbot</h2>
+
+<div id="chatbox"></div>
+
+<input type="text" id="message" placeholder="Type a message">
+<button onclick="sendMessage()">Send</button>
+
+<script>
+function sendMessage() {
+    let message = document.getElementById("message").value;
+
+    fetch("/chat", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ message: message })
+    })
+    .then(response => response.json())
+    .then(data => {
+        let chatbox = document.getElementById("chatbox");
+        chatbox.innerHTML += "<p class='user'>You: " + message + "</p>";
+        chatbox.innerHTML += "<p class='bot'>Bot: " + data.response + "</p>";
+        document.getElementById("message").value = "";
+    });
+}
+</script>
+
+</body>
+</html>
