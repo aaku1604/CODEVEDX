@@ -13,3 +13,5 @@
 - Matplotlib
 
 ## How to Run
+cd Project1
+python main.py
