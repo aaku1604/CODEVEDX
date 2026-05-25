@@ -1,5 +1,4 @@
 # Project 1 – Utility Usage Prediction Tool
-
 ## Technologies
 - Python
 - Pandas
